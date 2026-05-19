@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculus in Animal Husbandry: Kedah-Kelantan Cattle Growth</title>
+    <!-- Tailwind CSS for modern styling -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- Chart.js for interactive rendering -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- MathJax for rendering equations -->
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans min-h-screen">
+
+    <!-- Header Section -->
+    <header class="bg-emerald-800 text-white shadow-md py-6 px-4 mb-8">
+        <div class="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+            <div>
+                <span class="bg-emerald-600 text-emerald-100 text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-full">
+                    SFH: Animal Husbandry Technology Application
+                </span>
+                <h1 class="text-2xl md:text-3xl font-bold mt-2">Modeling Kedah-Kelantan (KK) Cattle Weight Trajectories</h1>
+            </div>
+            <div class="text-right border-t md:border-t-0 md:border-l border-emerald-700 pt-3 md:pt-0 md:pl-6 text-emerald-100 text-sm">
+                <p><strong>Field:</strong> Livestock Growth Kinetics</p>
+                <p><strong>Tool:</strong> Calculus Derivatives $f'(x)$</p>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-5xl mx-auto px-4 pb-12 grid grid-cols-1 lg:grid-cols-3 gap-8">
+        
+        <!-- Left Panel: Bioscience Problem & Math Formulas -->
+        <div class="lg:col-span-1 space-y-6">
+            
+            <!-- Problem Context -->
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+                <h2 class="text-lg font-bold text-slate-900 border-b border-slate-100 pb-2 mb-3">
+                    The Bioscience Scenario
+                </h2>
+                <p class="text-sm text-slate-600 leading-relaxed">
+                    In Malaysian beef production, managing the growth efficiency of indigenous <strong>Kedah-Kelantan (KK) cattle</strong> is vital. Since feed translates directly to production costs, animal scientists must identify the exact period where the animal exhibits its maximum growth rate—the <strong>inflection point</strong>. 
+                </p>
+                <p class="text-sm text-slate-600 mt-2 leading-relaxed">
+                    Using a sigmoidal growth model, we can map the total weight over time ($f(x)$) and apply the first derivative ($f'(x)$) to dynamically find the <strong>Average Daily Gain (ADG)</strong> at any given week of life.
+                </p>
+            </div>
+
+            <!-- Mathematical Formulation -->
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+                <h2 class="text-lg font-bold text-slate-900 border-b border-slate-100 pb-2 mb-3">
+                    Mathematical Model
+                </h2>
+                <div class="space-y-4 text-sm">
+                    <div>
+                        <span class="block font-semibold text-emerald-800 mb-1">Growth Function, $f(x)$:</span>
+                        <div class="bg-slate-50 p-3 rounded-lg overflow-x-auto text-center">
+                            $$f(x) = \frac{L}{1 + e^{-k(x - x_0)}}$$
+                        </div>
+                    </div>
+                    <div>
+                        <span class="block font-semibold text-emerald-800 mb-1">First Derivative (ADG), $f'(x)$ :</span>
+                        <div class="bg-slate-50 p-3 rounded-lg overflow-x-auto text-center">
+                            $$f'(x) = \frac{L \cdot k \cdot e^{-k(x - x_0)}}{(1 + e^{-k(x - x_0)})^2}$$
+                        </div>
+                    </div>
+                    <div class="text-xs text-slate-500 bg-emerald-50/50 p-3 rounded-lg border border-emerald-100/50">
+                        <span class="font-semibold text-emerald-900 block mb-1">Parameters (Realistic Malaysian KK Data):</span>
+                        <ul class="list-disc list-inside space-y-1">
+                            <li>$L = 220 \text{ kg}$ (Asymptotic Mature Weight)</li>
+                            <li>$k = 0.08$ (Growth rate coefficient)</li>
+                            <li>$x_0 = 35 \text{ weeks}$ (Time of maximum growth)</li>
+                            <li>$x =$ Age of the cattle in weeks</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Data Sources -->
+            <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100 text-xs text-slate-500">
+                <span class="font-bold text-slate-700 block mb-1">Biological Benchmarks & Methodology Inspired By:</span>
+                <ul class="list-disc list-inside space-y-1">
+                    <li><em>Malaysian Agricultural Research and Development Institute (MARDI)</em> publications on KK growth profiles.</li>
+                    <li>Growth parameters adapted from standard Logistic kinetics observed in local pastured beef operations.</li>
+                </ul>
+            </div>
+
+        </div>
+
+        <!-- Right Panel: Interactive Chart & Dynamic Analytics -->
+        <div class="lg:col-span-2 space-y-6">
+            
+            <!-- Graph Box -->
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+                <div class="flex justify-between items-center border-b border-slate-100 pb-3 mb-4">
+                    <div>
+                        <h2 class="text-lg font-bold text-slate-900">Interactive Growth & Rate Curve</h2>
+                        <p class="text-xs text-slate-500">Click anywhere on the graph area to analyze the rate of change at that specific age.</p>
+                    </div>
+                    <span class="text-xs bg-amber-100 text-amber-800 px-2 py-1 rounded font-medium animate-pulse">
+                        Interactive Tap Enabled
+                    </span>
+                </div>
+                
+                <div class="relative min-h-[300px] w-full">
+                    <canvas id="growthChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Dynamic Calculator Output -->
+            <div id="inspectorPanel" class="bg-gradient-to-br from-slate-900 to-emerald-950 text-white p-6 rounded-2xl shadow-md transition-all duration-300 transform scale-100">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-md font-bold tracking-wide uppercase text-emerald-400">
+                        Calculus Point-Inspector
+                    </h3>
+                    <div class="text-xs bg-emerald-500/20 text-emerald-300 px-3 py-1 rounded-full border border-emerald-500/30">
+                        Selected: <span id="displayWeek">35</span> Weeks of Age
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+                    <!-- Numbers Matrix -->
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-white/5 p-3 rounded-xl border border-white/10">
+                            <span class="text-xs text-slate-400 block mb-1">Total Mass, $f(x)$</span>
+                            <span class="text-2xl font-bold text-white"><span id="outWeight">110.0</span> <span class="text-sm font-normal text-slate-400">kg</span></span>
+                        </div>
+                        <div class="bg-white/5 p-3 rounded-xl border border-white/10">
+                            <span class="text-xs text-emerald-400 block mb-1">Growth Rate, $f'(x)$</span>
+                            <span class="text-2xl font-bold text-emerald-400"><span id="outRate">4.40</span> <span class="text-sm font-normal text-emerald-300">kg/wk</span></span>
+                        </div>
+                    </div>
+
+                    <!-- Layman Explanation Box -->
+                    <div class="bg-white/5 p-4 rounded-xl border border-emerald-500/20">
+                        <span class="text-xs font-semibold text-amber-400 block mb-1">👨‍ Layman Bioscience Insight:</span>
+                        <p id="laymanExplanation" class="text-sm text-slate-200 leading-relaxed">
+                            At 35 weeks, this KK animal is hit its absolute peak growth spurt! It is currently gaining weight at its highest rate of 4.40 kg per week. Beyond this point, efficiency drops.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- App Logic Execution -->
+    <script>
+        // Mathematical Constants for Kedah-Kelantan (KK) Cattle Profile
+        const L = 220;    // Asymptotic mature weight in kg
+        const k = 0.08;   // Growth velocity coefficient
+        const x0 = 35;    // Point of inflection (weeks)
+
+        // Generate Dataset Array (Weeks 0 to 90)
+        const labels = [];
+        const weightData = [];
+        const rateData = [];
+
+        for (let x = 0; x <= 90; x++) {
+            labels.push(x);
+            
+            // Logistic Growth Equation f(x)
+            const fx = L / (1 + Math.exp(-k * (x - x0)));
+            weightData.push(fx.toFixed(2));
+
+            // First Derivative f'(x) -> Rate of Weight Change
+            const expTerm = Math.exp(-k * (x - x0));
+            const fPrimeX = (L * k * expTerm) / Math.pow(1 + expTerm, 2);
+            rateData.push(fPrimeX.toFixed(3));
+        }
+
+        // Initialize Chart.js
+        const ctx = document.getElementById('growthChart').getContext('2d');
+        const growthChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [
+                    {
+                        label: 'Total Cumulative Weight f(x) [kg]',
+                        data: weightData,
+                        borderColor: '#065f46', // emerald 800
+                        borderWidth: 3,
+                        backgroundColor: 'rgba(6, 95, 70, 0.05)',
+                        fill: true,
+                        yAxisID: 'yWeight',
+                        tension: 0.2,
+                        pointRadius: 0,
+                        pointHoverRadius: 6
+                    },
+                    {
+                        label: "Growth Rate f'(x) [kg/week]",
+                        data: rateData,
+                        borderColor: '#10b981', // emerald 500
+                        borderWidth: 2,
+                        borderDash: [5, 5],
+                        backgroundColor: 'transparent',
+                        yAxisID: 'yRate',
+                        tension: 0.2,
+                        pointRadius: 0,
+                        pointHoverRadius: 6
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        labels: { boxWidth: 15, font: { size: 12 } }
+                    },
+                    tooltip: {
+                        mode: 'index',
+                        intersect: false
+                    }
+                },
+                scales: {
+                    x: {
+                        title: { display: true, text: 'Animal Age (Weeks)', font: { weight: 'bold' } },
+                        grid: { color: 'rgba(0,0,0,0.03)' }
+                    },
+                    yWeight: {
+                        type: 'linear',
+                        position: 'left',
+                        title: { display: true, text: 'Live Weight (kg)', font: { weight: 'bold' } },
+                        min: 0,
+                        max: 250
+                    },
+                    yRate: {
+                        type: 'linear',
+                        position: 'right',
+                        title: { display: true, text: 'Weekly Gain Rate (kg/week)', font: { weight: 'bold' } },
+                        min: 0,
+                        max: 5,
+                        grid: { drawOnChartArea: false } // Avoid grid clutter
+                    }
+                },
+                // Capture interactive user interactions on graph click
+                onClick: (e) => {
+                    const points = growthChart.getElementsAtEventForMode(e, 'index', { intersect: false }, true);
+                    if (points.length) {
+                        const targetIndex = points[0].index;
+                        updateCalculusInspector(targetIndex);
+                    }
+                }
+            }
+        });
+
+        /**
+         * Computes and updates UI viewports with specific analytics at target timestamps
+         */
+        function updateCalculusInspector(week) {
+            // Recalculate dynamic parameters based on the point selected
+            const fx = L / (1 + Math.exp(-k * (week - x0)));
+            const expTerm = Math.exp(-k * (week - x0));
+            const fPrimeX = (L * k * expTerm) / Math.pow(1 + expTerm, 2);
+
+            // Compute equivalent Average Daily Gain (ADG) for agricultural clarity (kg/week divided by 7)
+            const adgGrams = ((fPrimeX / 7) * 1000).toFixed(0);
+
+            // Update Metric Outputs
+            document.getElementById('displayWeek').innerText = week;
+            document.getElementById('outWeight').innerText = fx.toFixed(1);
+            document.getElementById('outRate').innerText = fPrimeX.toFixed(2);
+
+            // Generate contextual expert-layman remarks
+            let insightStr = "";
+            if (week < 20) {
+                insightStr = `Early lag phase. The calf is structural building bone and muscle framework. Total weight is a modest ${fx.toFixed(1)} kg, growing slowly at ${fPrimeX.toFixed(2)} kg/week (${adgGrams}g/day). It doesn't require maximum density feed yet.`;
+            } else if (week >= 20 && week <= 45) {
+                insightStr = `This is the exponential acceleration window! The derivative value is exceptionally high at ${fPrimeX.toFixed(2)} kg/week. The metabolic turnover is peak; this is the optimal biological window to supply high-quality protein forage for maximum efficiency.`;
+            } else {
+                insightStr = `Plateau phase approaching maturation. Growth rate deceleration occurs because energy intake transitions toward fat deposition rather than muscle tissue accumulation. Derivative falls below 1.5 kg/week, signaling shifting economics for slaughter windows.`;
+            }
+
+            document.getElementById('laymanExplanation').innerText = insightStr;
+
+            // Simple visual response feedback trigger
+            const panel = document.getElementById('inspectorPanel');
+            panel.classList.remove('scale-100');
+            panel.classList.add('scale-[1.01]');
+            setTimeout(() => { panel.classList.remove('scale-[1.01]'); panel.classList.add('scale-100'); }, 150);
+        }
+    </script>
+</body>
+</html>
